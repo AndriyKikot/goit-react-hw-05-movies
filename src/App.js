@@ -1,10 +1,11 @@
-import './App.css';
+import Container from './components/Container/Container';
+import AppBar from './components/AppBar/AppBar';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header"></header>
-    </div>
+    <Container>
+      <AppBar />
+    </Container>
   );
 }
 
