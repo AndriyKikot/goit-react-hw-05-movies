@@ -16,7 +16,19 @@ const fetchTrendingMovies = async (page = 1) => {
   }
 };
 
-export { fetchTrendingMovies };
+const fetchMovies = async (query, page = 1) => {
+  try {
+    const { data } = await axios.get(
+      `/search/movie?language=en-US&page=${page}&include_adult=false&query=${query}`,
+    );
+    return data;
+  } catch (error) {
+    console.log(error);
+    return [];
+  }
+};
+
+export { fetchTrendingMovies, fetchMovies };
 // https://developers.themoviedb.org/3/trending/get-trending - список самых популярных фильмов на сегодня для создания коллекции на главной странице.
 // https://developers.themoviedb.org/3/search/search-movies - поиск кинофильма по ключевому слову на странице фильмов.
 // https://developers.themoviedb.org/3/movies/get-movie-details - запрос полной информации о фильме для страницы кинофильма.

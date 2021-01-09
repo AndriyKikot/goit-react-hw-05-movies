@@ -5,11 +5,12 @@ import Pagination from '@material-ui/lab/Pagination';
 import Status from '../../services/Status';
 import Preloader from '../../components/Preloader';
 import MoviesList from '../../components/MoviesList';
+import ErrorText from '../../components/ErrorText';
 import styles from './HomePage.module.css';
 
 function HomePage() {
   const [trendingMovies, setTrendingMovies] = useState([]);
-  const [status, setStatus] = useState(Status.PENDING);
+  const [status, setStatus] = useState(Status.IDLE);
   const [totalPages, setTotalPages] = useState(0);
   const [error, setError] = useState(null);
   const history = useHistory();
@@ -43,7 +44,12 @@ function HomePage() {
       <h2>Tranding Movies</h2>
       {status === Status.PENDING && <Preloader />}
 
-      {status === Status.REJECTED && error && <p>404</p>}
+      {status === Status.REJECTED && error && (
+        <>
+          <ErrorText message={error} />
+          <p>404</p>
+        </>
+      )}
 
       {status === Status.RESOLVED && (
         <>
