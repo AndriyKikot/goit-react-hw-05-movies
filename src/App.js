@@ -2,8 +2,8 @@ import { Switch, Route } from 'react-router-dom';
 
 import Container from './components/Container';
 import AppBar from './components/AppBar';
-import HomePage from './views/HomePage';
-import MoviesPage from './views/MoviesPage';
+import HomePage from './pages/HomePage';
+import MoviesPage from './pages/MoviesPage';
 
 function App() {
   return (
