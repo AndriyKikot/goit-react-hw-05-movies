@@ -1,21 +1,28 @@
 import { useState, useEffect } from 'react';
-import { Link, useRouteMatch } from 'react-router-dom';
+import { useLocation, useHistory } from 'react-router-dom';
 import { fetchTrendingMovies } from '../../services/tmdb-api';
 import Pagination from '@material-ui/lab/Pagination';
 import Status from '../../services/Status';
 import Preloader from '../../components/Preloader';
+import MoviesList from '../../components/MoviesList';
+import styles from './HomePage.module.css';
 
 function HomePage() {
   const [trendingMovies, setTrendingMovies] = useState([]);
   const [status, setStatus] = useState(Status.PENDING);
   const [totalPages, setTotalPages] = useState(0);
   const [error, setError] = useState(null);
+  const history = useHistory();
+  const location = useLocation();
+
+  const page = new URLSearchParams(location.search).get('page') ?? 1;
 
   useEffect(() => {
     setStatus(Status.PENDING);
+
     const fetchMoviesApi = async () => {
       try {
-        const { results, total_pages } = await fetchTrendingMovies();
+        const { results, total_pages } = await fetchTrendingMovies(page);
         setTrendingMovies(results);
         setTotalPages(total_pages);
         setStatus(Status.RESOLVED);
@@ -25,7 +32,11 @@ function HomePage() {
       }
     };
     fetchMoviesApi();
-  }, []);
+  }, [page]);
+
+  const pageHandler = (event, page) => {
+    history.push({ ...location, search: `page=${page}` });
+  };
 
   return (
     <>
@@ -36,19 +47,16 @@ function HomePage() {
 
       {status === Status.RESOLVED && (
         <>
-          {trendingMovies &&
-            trendingMovies.map(movie => (
-              <li key={movie.id}>
-                <Link to={`/movies/:${movie.id}`}>{movie.title}</Link>
-              </li>
-            ))}
-          <Pagination
-            count={totalPages}
-            // onChange={onPageChange}
-            // page={Number(page)}
-            showFirstButton
-            showLastButton
-          />
+          <MoviesList movies={trendingMovies} url={'movies'} />
+          {totalPages > 1 && (
+            <div className={styles.wrapper}>
+              <Pagination
+                count={totalPages}
+                onChange={pageHandler}
+                page={Number(page)}
+              />
+            </div>
+          )}
         </>
       )}
     </>
