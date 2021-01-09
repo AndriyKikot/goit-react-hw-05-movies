@@ -28,7 +28,44 @@ const fetchMovies = async (query, page = 1) => {
   }
 };
 
-export { fetchTrendingMovies, fetchMovies };
+const fetchMovieDetails = async movieID => {
+  try {
+    const { data } = await axios.get(`/movie/${movieID}`);
+    return data;
+  } catch (error) {
+    console.log(error);
+    return [];
+  }
+};
+
+const fetchMovieCredits = async movieId => {
+  try {
+    const { data } = await axios.get(`/movie/${movieId}/credits`);
+    return data;
+  } catch (error) {
+    console.log(error);
+    return [];
+  }
+};
+
+const fetchMovieReviews = async movieId => {
+  try {
+    const { data } = await axios.get(`/movie/${movieId}/reviews`);
+    return data;
+  } catch (error) {
+    console.log(error);
+    return [];
+  }
+};
+
+export {
+  fetchTrendingMovies,
+  fetchMovies,
+  fetchMovieDetails,
+  fetchMovieCredits,
+  fetchMovieReviews,
+};
+
 // https://developers.themoviedb.org/3/trending/get-trending - список самых популярных фильмов на сегодня для создания коллекции на главной странице.
 // https://developers.themoviedb.org/3/search/search-movies - поиск кинофильма по ключевому слову на странице фильмов.
 // https://developers.themoviedb.org/3/movies/get-movie-details - запрос полной информации о фильме для страницы кинофильма.
