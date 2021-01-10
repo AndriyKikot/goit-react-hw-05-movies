@@ -31,6 +31,7 @@ function MoviesPage() {
   }, [location.search, page]);
 
   useEffect(() => {
+    if (!query) return;
     const fetchQueryMovies = async () => {
       setStatus(Status.PENDING);
       try {
@@ -50,9 +51,13 @@ function MoviesPage() {
     fetchQueryMovies();
   }, [query, page]);
 
-  const searchHandler = query => {
-    setQuery(query);
-    history.push({ ...location, search: `query=${query}&page=1` });
+  const searchHandler = newQuery => {
+    if (query === newQuery) return;
+    setQuery(newQuery);
+    setMovies(null);
+    setError(null);
+    setStatus(Status.IDLE);
+    history.push({ ...location, search: `query=${newQuery}&page=1` });
   };
 
   const pageHandler = (event, page) => {

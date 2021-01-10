@@ -1,9 +1,9 @@
 import Navigation from '../Navigation';
-// import styles from './AppBar.module.css';
+import styles from './AppBar.module.css';
 
 function AppBar() {
   return (
-    <header>
+    <header className={styles.header}>
       <Navigation />
     </header>
   );

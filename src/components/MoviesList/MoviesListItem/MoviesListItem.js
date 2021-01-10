@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import styles from './MoviesListItem.module.css';
 import defaultPosterImg from '../../../images/no-img.jpg';
 
-const MoviesListItem = ({ poster_path, id, title, url }) => (
+const MoviesListItem = ({ poster_path, id, title, url, vote_average }) => (
   <li className={styles.listItem}>
     <Link to={{ pathname: `${url}/${id}` }}>
       <img
@@ -17,6 +17,7 @@ const MoviesListItem = ({ poster_path, id, title, url }) => (
         className={styles.poster}
       />
       <h3 className={styles.title}>{title}</h3>
+      <p className={styles.vote}>{vote_average}</p>
     </Link>
   </li>
 );

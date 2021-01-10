@@ -5,6 +5,8 @@ import AppBar from './components/AppBar';
 import HomePage from './pages/HomePage';
 import MoviesPage from './pages/MoviesPage';
 import MovieDetailsPage from './pages/MovieDetailsPage';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
@@ -24,6 +26,7 @@ function App() {
           <MovieDetailsPage />
         </Route>
       </Switch>
+      <ToastContainer autoClose={2000} />
     </Container>
   );
 }

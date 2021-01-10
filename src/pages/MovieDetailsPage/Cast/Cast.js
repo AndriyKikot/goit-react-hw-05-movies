@@ -22,6 +22,7 @@ const Cast = () => {
         const { cast } = await fetchMovieCredits(movieId);
         if (cast.length === 0) {
           toast.info('No results');
+          console.log(toast.info);
           setStatus(Status.IDLE);
           return;
         }

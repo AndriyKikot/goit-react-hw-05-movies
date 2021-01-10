@@ -55,11 +55,15 @@ function HomePage() {
         <>
           <MoviesList movies={trendingMovies} url={'movies'} />
           {totalPages > 1 && (
-            <div className={styles.wrapper}>
+            <div className={styles.paginationWrapper}>
               <Pagination
+                className={styles.pagination}
                 count={totalPages}
                 onChange={pageHandler}
                 page={Number(page)}
+                variant="outlined"
+                color="secondary"
+                shape="rounded"
               />
             </div>
           )}

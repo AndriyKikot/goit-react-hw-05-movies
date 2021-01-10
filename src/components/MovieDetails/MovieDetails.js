@@ -30,17 +30,17 @@ const MoviesDetails = ({ movie, url, location }) => {
           <p className={(styles.info, styles.rating)}>{movie.vote_average}</p>
           <h3 className={styles.title}>Overview</h3>
           <p className={styles.info}>{movie.overview}</p>
-          <h2 className={styles.title}>
+          <h3 className={styles.title}>
             Genres:
             <ul className={styles.genreList}>
               {movie.genres.map(genre => (
                 <li key={genre.id}>{genre.name}</li>
               ))}
             </ul>
-          </h2>
+          </h3>
         </div>
       </div>
-      <h2>Additional information</h2>
+      <h3>Additional information</h3>
       <ul className={styles.navigation}>
         <li className={styles.link}>
           <NavLink
@@ -50,7 +50,7 @@ const MoviesDetails = ({ movie, url, location }) => {
             }}
             activeClassName={styles.activeLink}
           >
-            Credits
+            Cast
           </NavLink>
         </li>
         <li className={styles.link}>
