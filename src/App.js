@@ -5,6 +5,8 @@ import AppBar from './components/AppBar';
 import HomePage from './pages/HomePage';
 import MoviesPage from './pages/MoviesPage';
 import MovieDetailsPage from './pages/MovieDetailsPage';
+import NotFoundPage from './pages/NotFoundPage';
+
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -24,6 +26,10 @@ function App() {
 
         <Route path="/movies/:movieId">
           <MovieDetailsPage />
+        </Route>
+
+        <Route>
+          <NotFoundPage />
         </Route>
       </Switch>
       <ToastContainer autoClose={2000} />

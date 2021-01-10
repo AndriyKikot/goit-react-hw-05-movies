@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react';
 import { useLocation, useHistory } from 'react-router-dom';
-import { fetchTrendingMovies } from '../../services/tmdb-api';
 import Pagination from '@material-ui/lab/Pagination';
+
+import { fetchTrendingMovies } from '../../services/tmdb-api';
 import Status from '../../services/Status';
 import Preloader from '../../components/Preloader';
 import MoviesList from '../../components/MoviesList';
 import ErrorText from '../../components/ErrorText';
+
 import styles from './HomePage.module.css';
 
 function HomePage() {
@@ -42,12 +44,13 @@ function HomePage() {
   return (
     <>
       <h2>Tranding Movies</h2>
+
       {status === Status.PENDING && <Preloader />}
 
       {status === Status.REJECTED && error && (
         <>
-          <ErrorText message={error} />
-          <p>404</p>
+          <ErrorText text={error} />
+          <p> Nothing found :( </p>
         </>
       )}
 

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { toast } from 'react-toastify';
 import PropTypes from 'prop-types';
+
 import styles from './Searchbar.module.css';
 
 function Searchbar({ onSubmit }) {
@@ -14,7 +15,7 @@ function Searchbar({ onSubmit }) {
     event.preventDefault();
 
     if (query.trim() === '') {
-      toast.warning('Enter query name');
+      toast.warning('Enter query name!');
       return;
     }
 

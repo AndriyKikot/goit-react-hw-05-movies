@@ -72,17 +72,21 @@ function MoviesPage() {
         <>
           <MoviesList movies={movies} url={url} />
           {totalPages > 1 && (
-            <div className={styles.wrapper}>
+            <div className={styles.paginationWrapper}>
               <Pagination
+                className={styles.pagination}
                 count={totalPages}
                 onChange={pageHandler}
                 page={Number(page)}
+                variant="outlined"
+                color="secondary"
+                shape="rounded"
               />
             </div>
           )}
         </>
       )}
-      {status === Status.REJECTED && error && <ErrorText message={error} />}
+      {status === Status.REJECTED && error && <ErrorText text={error} />}
     </>
   );
 }

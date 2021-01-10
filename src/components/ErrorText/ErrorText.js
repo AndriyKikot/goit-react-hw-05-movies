@@ -1,9 +1,9 @@
 import styles from './ErrorText.module.css';
 
-function ErrorText() {
+function ErrorText({ text }) {
   return (
     <div className={styles.wrapper}>
-      <p className={styles.errorText}>Sorry, that something went wrong</p>
+      <p className={styles.errorText}>{text}</p>
     </div>
   );
 }
