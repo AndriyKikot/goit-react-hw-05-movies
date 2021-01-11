@@ -5,8 +5,8 @@ import { toast } from 'react-toastify';
 
 import { fetchMovieReviews } from '../../../services/tmdb-api';
 import Status from '../../../services/Status';
-
 import Preloader from '../../../components/Preloader';
+
 import styles from './Reviews.module.css';
 
 const Reviews = movieID => {
@@ -20,7 +20,7 @@ const Reviews = movieID => {
       try {
         const { results } = await fetchMovieReviews(movieId);
         if (results.length === 0) {
-          toast.info("We don't have any reviews for this movie.");
+          toast.warning('No one has left a review for this film yet');
           setStatus(Status.REJECTED);
           return;
         }
@@ -39,14 +39,16 @@ const Reviews = movieID => {
     <>
       {status === Status.PENDING && <Preloader />}
 
-      {status === Status.REJECTED && error && <p>404</p>}
+      {status === Status.REJECTED && error && (
+        <p>Sorry, that something went wrong :(</p>
+      )}
 
       {status === Status.RESOLVED && (
         <>
-          <ul className={styles}>
+          <ul className={styles.list}>
             {reviews.map(({ id, author, content }) => (
               <li key={id} className={styles.item}>
-                <p className={styles.authorName}>{author}</p>
+                <p className={styles.author}>{author}</p>
                 <p className={styles.content}>{content}</p>
               </li>
             ))}

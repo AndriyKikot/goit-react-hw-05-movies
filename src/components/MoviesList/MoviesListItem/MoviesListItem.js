@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import styles from './MoviesListItem.module.css';
-import defaultPosterImg from '../../../images/no-img.jpg';
+import defaultPosterImg from '../../../images/defaultPoster.jpg';
 
 const MoviesListItem = ({ id, poster_path, title, url, vote_average }) => (
   <li className={styles.listItem}>

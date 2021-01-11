@@ -23,7 +23,7 @@
 .link:hover {
   color: white;
   border-bottom: 3px solid white;
-  color: red;
+  color: white;
   transition: 0.2s;
 }
 

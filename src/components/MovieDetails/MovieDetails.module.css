@@ -1,0 +1,46 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  border-bottom: 2px solid red;
+  padding-bottom: 20px;
+}
+
+.poster {
+  margin-right: 50px;
+}
+
+.navigation {
+  display: flex;
+  list-style: none;
+  margin-bottom: 30px;
+}
+
+.title {
+  font-size: 14px;
+}
+
+.info {
+  font-size: 16px;
+}
+
+.genreList {
+  composes: info;
+}
+
+.linkItem {
+  margin-right: 20px;
+}
+
+.link {
+  color: white;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.link:hover {
+  color: white;
+}
+
+.activeLink {
+  color: red;
+}

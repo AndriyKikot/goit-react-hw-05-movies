@@ -7,11 +7,15 @@ import {
   useHistory,
 } from 'react-router-dom';
 import { Button } from '@material-ui/core';
+
 import { fetchMovieDetails } from '../../services/tmdb-api';
 import Status from '../../services/Status';
 import Preloader from '../../components/Preloader';
 import MovieDetails from '../../components/MovieDetails';
 import ErrorText from '../../components/ErrorText';
+
+import styles from './MovieDetailsPage.module.css';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
 const Cast = lazy(() =>
   import('./Cast/Cast' /* webpackChunkName: "castSubview"*/),
@@ -46,11 +50,7 @@ function MovieDetailsPage() {
   }, [movieId]);
 
   const comeBackHandler = () => {
-    if (!location.state) {
-      history.push('/');
-      return;
-    }
-    history.push({ ...location.state.from });
+    history.push(location?.state?.from ?? '/');
   };
 
   return (
@@ -63,15 +63,25 @@ function MovieDetailsPage() {
             onClick={comeBackHandler}
             variant="outlined"
             color="primary"
-            style={{ backgroundColor: '#f0f0f0' }}
+            className={styles.btn}
+            style={{
+              backgroundColor: 'red',
+              color: 'white',
+              margin: '20px',
+              display: 'flex',
+            }}
           >
+            <ArrowBackIcon style={{ marginRight: '5px' }} />
             Сome back
           </Button>
+
           <MovieDetails movie={movie} url={url} location={location} />
+
           <Suspense fallback={<Preloader />}>
             <Route path={`${path}/cast`}>
               {status === Status.RESOLVED && <Cast />}
             </Route>
+
             <Route path={`${path}/reviews`}>
               {status === Status.RESOLVED && <Reviews />}
             </Route>
@@ -81,8 +91,8 @@ function MovieDetailsPage() {
 
       {status === Status.REJECTED && error && (
         <>
-          <ErrorText message={error} />
-          <p>404</p>
+          <ErrorText text={error} />
+          <p>Sorry, something went wrong :(</p>
         </>
       )}
     </>

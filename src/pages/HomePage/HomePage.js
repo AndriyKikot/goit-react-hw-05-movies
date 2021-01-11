@@ -60,7 +60,6 @@ function HomePage() {
           {totalPages > 1 && (
             <div className={styles.paginationWrapper}>
               <Pagination
-                className={styles.pagination}
                 count={totalPages}
                 onChange={pageHandler}
                 page={Number(page)}

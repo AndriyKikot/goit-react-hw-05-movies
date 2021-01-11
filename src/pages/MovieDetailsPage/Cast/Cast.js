@@ -3,12 +3,11 @@ import { useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import { fetchMovieCredits } from '../../../services/tmdb-api';
-import defaultPosterImg from '../../../images/no-img.jpg';
-
 import Status from '../../../services/Status';
-
 import Preloader from '../../../components/Preloader';
+
 import styles from './Cast.module.css';
+import defaultProfileImg from '../../../images/defaultProfile.jpg';
 
 const Cast = () => {
   const { movieId } = useParams();
@@ -21,8 +20,7 @@ const Cast = () => {
       try {
         const { cast } = await fetchMovieCredits(movieId);
         if (cast.length === 0) {
-          toast.info('No results');
-          console.log(toast.info);
+          toast.warning('Sorry, no cast for this film was found');
           setStatus(Status.IDLE);
           return;
         }
@@ -44,24 +42,27 @@ const Cast = () => {
       {status === Status.RESOLVED && (
         <ul className={styles.list}>
           {cast.map(({ id, profile_path, name, character }) => (
-            <li key={id} className={styles.actor}>
+            <li key={id} className={styles.item}>
               <img
-                className={styles.photo}
+                className={styles.profileImg}
                 src={
                   profile_path
                     ? `https://image.tmdb.org/t/p/w500/${profile_path}`
-                    : defaultPosterImg
+                    : defaultProfileImg
                 }
                 alt="actor"
+                height="200"
               />
               <p className={styles.name}>{name}</p>
-              <p className={styles.character}>{character || 'unknown'}</p>
+              <p className={styles.character}>...{character || 'Unknown'}</p>
             </li>
           ))}
         </ul>
       )}
 
-      {status === Status.REJECTED && error && <p>404</p>}
+      {status === Status.REJECTED && error && (
+        <p>Sorry, that something went wrong :(</p>
+      )}
     </>
   );
 };
