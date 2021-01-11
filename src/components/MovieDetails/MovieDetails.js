@@ -33,11 +33,13 @@ const MoviesDetails = ({ movie, url, location }) => {
           <p className={styles.runtime}>{movie.runtime} min</p>
           <h3 className={styles.title}>
             Genres:
-            <ul className={styles.genreList}>
-              {movie.genres.map(genre => (
-                <li key={genre.id}>{genre.name}</li>
-              ))}
-            </ul>
+            {movie.genres && (
+              <ul className={styles.genreList}>
+                {movie.genres.map(genre => (
+                  <li key={genre.id}>{genre.name}</li>
+                ))}
+              </ul>
+            )}
           </h3>
         </div>
       </div>
@@ -73,7 +75,7 @@ const MoviesDetails = ({ movie, url, location }) => {
 };
 
 MoviesDetails.propTypes = {
-  movie: PropTypes.object.isRequired,
+  movie: PropTypes.array.isRequired,
   url: PropTypes.string.isRequired,
 };
 

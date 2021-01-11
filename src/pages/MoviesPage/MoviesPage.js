@@ -1,24 +1,25 @@
 import { useState, useEffect } from 'react';
 import { useHistory, useLocation, useRouteMatch } from 'react-router-dom';
 import Pagination from '@material-ui/lab/Pagination';
+
 import { fetchMovies } from '../../services/tmdb-api';
 import Status from '../../services/Status';
 import ErrorText from '../../components/ErrorText';
 import Searchbar from '../../components/Searchbar';
 import MoviesList from '../../components/MoviesList';
 import Preloader from '../../components/Preloader';
+
 import styles from './MoviesPage.module.css';
 
 function MoviesPage() {
   const [query, setQuery] = useState('');
   const [totalPages, setTotalPages] = useState(0);
   const [status, setStatus] = useState(Status.IDLE);
-  const [movies, setMovies] = useState(null);
+  const [movies, setMovies] = useState([]);
   const [error, setError] = useState(null);
   const history = useHistory();
   const location = useLocation();
   const { url } = useRouteMatch();
-
   const page = new URLSearchParams(location.search).get('page') ?? 1;
 
   useEffect(() => {
@@ -70,7 +71,7 @@ function MoviesPage() {
       {status === Status.PENDING && <Preloader />}
       {status === Status.RESOLVED && (
         <>
-          <MoviesList movies={movies} url={url} />
+          <MoviesList movies={movies} url={url} location={location} />
           {totalPages > 1 && (
             <div className={styles.paginationWrapper}>
               <Pagination
