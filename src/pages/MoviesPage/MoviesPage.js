@@ -69,6 +69,7 @@ function MoviesPage() {
     <>
       <Searchbar onSubmit={searchHandler} />
       {status === Status.PENDING && <Preloader />}
+
       {status === Status.RESOLVED && (
         <>
           <MoviesList movies={movies} url={url} location={location} />
@@ -79,14 +80,13 @@ function MoviesPage() {
                 count={totalPages}
                 onChange={pageHandler}
                 page={Number(page)}
-                variant="outlined"
                 color="secondary"
-                shape="rounded"
               />
             </div>
           )}
         </>
       )}
+
       {status === Status.REJECTED && error && <ErrorText text={error} />}
     </>
   );

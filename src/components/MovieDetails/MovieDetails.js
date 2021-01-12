@@ -75,7 +75,7 @@ const MoviesDetails = ({ movie, url, location }) => {
 };
 
 MoviesDetails.propTypes = {
-  movie: PropTypes.array.isRequired,
+  movie: PropTypes.object.isRequired,
   url: PropTypes.string.isRequired,
 };
 

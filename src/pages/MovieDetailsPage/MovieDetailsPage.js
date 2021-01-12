@@ -17,12 +17,10 @@ import ErrorText from '../../components/ErrorText';
 import styles from './MovieDetailsPage.module.css';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
-const Cast = lazy(() =>
-  import('./Cast/Cast' /* webpackChunkName: "castSubview"*/),
-);
+const Cast = lazy(() => import('./Cast' /* webpackChunkName: "cast"*/));
 
 const Reviews = lazy(() =>
-  import('./Reviews/Reviews' /* webpackChunkName: "reviewsSubview"*/),
+  import('./Reviews' /* webpackChunkName: "reviews"*/),
 );
 
 function MovieDetailsPage() {

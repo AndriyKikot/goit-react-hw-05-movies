@@ -63,9 +63,7 @@ function HomePage() {
                 count={totalPages}
                 onChange={pageHandler}
                 page={Number(page)}
-                variant="outlined"
                 color="secondary"
-                shape="rounded"
               />
             </div>
           )}
