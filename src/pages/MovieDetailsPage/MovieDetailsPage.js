@@ -25,7 +25,7 @@ const Reviews = lazy(() =>
 
 function MovieDetailsPage() {
   const [movie, setMovie] = useState([]);
-  const [status, setStatus] = useState(Status.REJECTED);
+  const [status, setStatus] = useState(Status.IDLE);
   const [error, setError] = useState(null);
   const { slug } = useParams();
   const { url, path } = useRouteMatch();
