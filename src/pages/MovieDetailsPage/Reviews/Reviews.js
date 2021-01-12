@@ -10,10 +10,11 @@ import Preloader from '../../../components/Preloader';
 import styles from './Reviews.module.css';
 
 const Reviews = movieID => {
-  const { movieId } = useParams();
   const [reviews, setReviews] = useState([]);
   const [error, setError] = useState(null);
   const [status, setStatus] = useState(Status.IDLE);
+  const { slug } = useParams();
+  const movieId = slug.match(/[a-z0-9]+$/)[0];
 
   useEffect(() => {
     const fetchReviews = async () => {

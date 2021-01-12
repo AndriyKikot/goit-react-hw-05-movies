@@ -10,10 +10,11 @@ import styles from './Cast.module.css';
 import defaultProfileImg from '../../../images/defaultProfile.jpg';
 
 const Cast = () => {
-  const { movieId } = useParams();
   const [cast, setCast] = useState([]);
   const [error, setError] = useState(null);
   const [status, setStatus] = useState(Status.IDLE);
+  const { slug } = useParams();
+  const movieId = slug.match(/[a-z0-9]+$/)[0];
 
   useEffect(() => {
     const fetchActors = async () => {

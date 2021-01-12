@@ -25,12 +25,13 @@ const Reviews = lazy(() =>
 
 function MovieDetailsPage() {
   const [movie, setMovie] = useState([]);
-  const [status, setStatus] = useState(Status.IDLE);
+  const [status, setStatus] = useState(Status.REJECTED);
   const [error, setError] = useState(null);
-  const { movieId } = useParams();
+  const { slug } = useParams();
   const { url, path } = useRouteMatch();
   const history = useHistory();
   const location = useLocation();
+  const movieId = slug.match(/[a-z0-9]+$/)[0];
 
   useEffect(() => {
     const fetchMoviesID = async () => {
