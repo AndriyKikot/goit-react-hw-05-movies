@@ -30,17 +30,15 @@ const MoviesDetails = ({ movie, url, location }) => {
           <h3 className={styles.title}>Overview</h3>
           <p className={styles.info}>{movie.overview}</p>
           <h3 className={styles.title}>Runtime</h3>
-          <p className={styles.runtime}>{movie.runtime} min</p>
-          <h3 className={styles.title}>
-            Genres:
-            {movie.genres && (
-              <ul className={styles.genreList}>
-                {movie.genres.map(genre => (
-                  <li key={genre.id}>{genre.name}</li>
-                ))}
-              </ul>
-            )}
-          </h3>
+          <p className={styles.info}>{movie.runtime} min</p>
+          <h3 className={styles.title}>Genres:</h3>
+          {movie.genres && (
+            <ul className={styles.genreList}>
+              {movie.genres.map(genre => (
+                <li key={genre.id}>{genre.name}</li>
+              ))}
+            </ul>
+          )}
         </div>
       </div>
       <h3 className={styles.titleInfo}>Additional information</h3>

@@ -49,7 +49,7 @@ const Reviews = movieID => {
           <ul className={styles.list}>
             {reviews.map(({ id, author, content }) => (
               <li key={id} className={styles.item}>
-                <p className={styles.author}>{author}</p>
+                <p className={styles.author}>Author: {author}</p>
                 <p className={styles.content}>{content}</p>
               </li>
             ))}

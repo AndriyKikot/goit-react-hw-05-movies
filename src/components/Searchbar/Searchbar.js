@@ -24,7 +24,7 @@ function Searchbar({ onSubmit }) {
   };
 
   return (
-    <header className={styles.Searchbar}>
+    <div className={styles.Searchbar}>
       <form className={styles.SearchForm} onSubmit={handleSubmit}>
         <button type="submit" className={styles.SearchForm__button}>
           <span className={styles.SearchForm__buttonLabel}>Search</span>
@@ -40,7 +40,7 @@ function Searchbar({ onSubmit }) {
           onChange={handleQueryChange}
         />
       </form>
-    </header>
+    </div>
   );
 }
 

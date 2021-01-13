@@ -14,7 +14,7 @@
 
 .listItem:hover {
   transform: scale(1.03);
-  transition: 0.2s;
+  transition: 0.3s;
   box-shadow: 0 0 10px 0 red;
 }
 
@@ -42,4 +42,8 @@
   align-items: center;
   justify-content: center;
   font-weight: 600;
+}
+
+.link {
+  text-decoration: none;
 }

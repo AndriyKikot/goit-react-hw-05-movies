@@ -9,7 +9,10 @@ const makeSlug = string => slugify(string, { lower: true });
 
 const MoviesListItem = ({ id, poster_path, title, url, vote_average }) => (
   <li className={styles.listItem}>
-    <Link to={{ pathname: `${url}/${makeSlug(`${title}-${id}`)}` }}>
+    <Link
+      to={{ pathname: `${url}/${makeSlug(`${title}-${id}`)}` }}
+      className={styles.link}
+    >
       <img
         src={
           poster_path

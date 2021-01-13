@@ -60,7 +60,6 @@ function MovieDetailsPage() {
         <div>
           <Button
             onClick={comeBackHandler}
-            variant="outlined"
             color="primary"
             className={styles.btn}
             style={{
@@ -68,6 +67,7 @@ function MovieDetailsPage() {
               color: 'white',
               margin: '20px',
               display: 'flex',
+              outline: 'none',
             }}
           >
             <ArrowBackIcon style={{ marginRight: '5px' }} />
