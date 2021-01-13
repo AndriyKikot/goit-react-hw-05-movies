@@ -4,11 +4,10 @@ import Pagination from '@material-ui/lab/Pagination';
 
 import { fetchTrendingMovies } from '../../services/tmdb-api';
 import Status from '../../services/Status';
+import StyledPagination from '../../services/styledPagination';
 import Preloader from '../../components/Preloader';
 import MoviesList from '../../components/MoviesList';
 import ErrorText from '../../components/ErrorText';
-
-import styles from './HomePage.module.css';
 
 function HomePage() {
   const [trendingMovies, setTrendingMovies] = useState([]);
@@ -17,6 +16,7 @@ function HomePage() {
   const [error, setError] = useState(null);
   const history = useHistory();
   const location = useLocation();
+  const classesPagination = StyledPagination();
 
   const page = new URLSearchParams(location.search).get('page') ?? 1;
 
@@ -58,14 +58,12 @@ function HomePage() {
         <>
           <MoviesList movies={trendingMovies} url={'movies'} />
           {totalPages > 1 && (
-            <div className={styles.paginationWrapper}>
-              <Pagination
-                count={totalPages}
-                onChange={pageHandler}
-                page={Number(page)}
-                color="secondary"
-              />
-            </div>
+            <Pagination
+              className={classesPagination.root}
+              count={totalPages}
+              onChange={pageHandler}
+              page={Number(page)}
+            />
           )}
         </>
       )}

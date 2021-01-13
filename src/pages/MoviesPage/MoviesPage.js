@@ -4,12 +4,11 @@ import Pagination from '@material-ui/lab/Pagination';
 
 import { fetchMovies } from '../../services/tmdb-api';
 import Status from '../../services/Status';
+import StyledPagination from '../../services/styledPagination';
 import ErrorText from '../../components/ErrorText';
 import Searchbar from '../../components/Searchbar';
 import MoviesList from '../../components/MoviesList';
 import Preloader from '../../components/Preloader';
-
-import styles from './MoviesPage.module.css';
 
 function MoviesPage() {
   const [query, setQuery] = useState('');
@@ -20,6 +19,8 @@ function MoviesPage() {
   const history = useHistory();
   const location = useLocation();
   const { url } = useRouteMatch();
+  const classesPagination = StyledPagination();
+
   const page = new URLSearchParams(location.search).get('page') ?? 1;
 
   useEffect(() => {
@@ -74,15 +75,12 @@ function MoviesPage() {
         <>
           <MoviesList movies={movies} url={url} location={location} />
           {totalPages > 1 && (
-            <div className={styles.paginationWrapper}>
-              <Pagination
-                className={styles.pagination}
-                count={totalPages}
-                onChange={pageHandler}
-                page={Number(page)}
-                color="secondary"
-              />
-            </div>
+            <Pagination
+              className={classesPagination.root}
+              count={totalPages}
+              onChange={pageHandler}
+              page={Number(page)}
+            />
           )}
         </>
       )}
